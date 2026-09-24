@@ -10,11 +10,11 @@ def calcul(nbr1,nbr2,op):
     elif op == "/":
         resultats = nbr1 / nbr2
     else:
-        print("Calcule impossible veuillez verifier vos entrer")
+        return None
     
     return resultats
     
-def operator():
+def operateur():
     op = ""                   
     while True:
         op = input("Operateur : ")
@@ -25,15 +25,18 @@ def operator():
     return op  
     
     
-def verifie_calcul(op):
-          
+def verifie_calcul(op):      
     resul = 0
     while True:
         try:
-            nbr1 = int(input("Entrer votre premier valeur : "))
-            nbr2 = int(input("Entrer votre deuxieme valeur : "))
-            resul = calcul(nbr1, nbr2, op)
-            break
+            nbr1 = float(input("Entrer votre premier valeur : "))
+            nbr2 = float(input("Entrer votre deuxieme valeur : "))
+            resul = calcul(nbr1, nbr2, "^")
+            if resul == None:
+                print("L'opérateur n'est pas correcte veuillez vérifier")
+                continue
+            else:
+                break
         except ValueError:
             print("Valeur inconnu veuillez entrer des nombre")
         except ZeroDivisionError:
@@ -52,7 +55,7 @@ print(''' Veuillez entrer votre operateur:
 history = []
     
 while True:
-    op = operator()
+    op = operateur()
     result = verifie_calcul(op)
     print(f'Votre resultats est : {result}')
     history.append(result)
