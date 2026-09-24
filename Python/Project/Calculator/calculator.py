@@ -1,3 +1,5 @@
+class OperateurInconnuError(Exception):
+    pass
 
 def calcul(nbr1,nbr2,op):
     resultats = 0
@@ -10,7 +12,7 @@ def calcul(nbr1,nbr2,op):
     elif op == "/":
         resultats = nbr1 / nbr2
     else:
-        return None
+        raise OperateurInconnuError("Opérateur inconnu")
     
     return resultats
     
@@ -31,18 +33,14 @@ def verifie_calcul(op):
         try:
             nbr1 = float(input("Entrer votre premier valeur : "))
             nbr2 = float(input("Entrer votre deuxieme valeur : "))
-            resul = calcul(nbr1, nbr2, "^")
-            if resul == None:
-                print("L'opérateur n'est pas correcte veuillez vérifier")
-                continue
-            else:
-                break
+            resul = calcul(nbr1, nbr2, op)
+            break
         except ValueError:
             print("Valeur inconnu veuillez entrer des nombre")
         except ZeroDivisionError:
             print("Sorry, pas possible cette diffision par zero")
-        except:
-            print("Veuillez reprendre s'il vous plait")
+        except OperateurInconnuError:
+            print("Operateur inconnu")
     return resul
 
 
