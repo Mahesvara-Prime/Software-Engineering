@@ -27,7 +27,7 @@ def operator():
     
 def verifie_calcul(op):
           
-    result = 0
+    resul = 0
     while True:
         try:
             nbr1 = int(input("Entrer votre premier valeur : "))
@@ -40,21 +40,27 @@ def verifie_calcul(op):
             print("Sorry, pas possible cette diffision par zero")
         except:
             print("Veuillez reprendre s'il vous plait")
-    return result
+    return resul
+
 
 print(''' Veuillez entrer votre operateur:
             1. + pour l'addition
             2. - pour la soustraction
             3. * pour la multiplication
             4. / pour la division''')
-            
-While True:
+     
+history = []
+    
+while True:
     op = operator()
-    verifie_calcul(op)
-    if continue == "y":
+    result = verifie_calcul(op)
+    print(f'Votre resultats est : {result}')
+    history.append(result)
+    play = input("Voulez-vous continuer y/n : ")
+    if play == "y":
         continue
     else:
         break
     
      
-print(f'Votre resultats est : {resul}')
+print(f'Historique des resultats : {history}')
